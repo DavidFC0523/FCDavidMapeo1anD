@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping
+DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping3.0.dtd">
+<hibernate-mapping>
+    <class name="es.albarregas.beans.Profesor"
+           table="profesoresM1anD" dynamic-update="true">
+        <id column="idProfesor" name="idProf" type="java.lang.Integer">
+            <generator class="identity"/>
+        </id>
+        <property name="nombre">
+            <column length="50" name="nombre" not-null="true" />
+        </property>
+        <set name="correos" cascade="save-update, delete-orphan"
+             fetch="join" lazy="false">
+            <key>
+
+                <column name="idProfesor" />
+            </key>
+            <one-to-many class="es.albarregas.beans.CorreoElectronico"/>
+        </set>
+    </class>
+</hibernate-mapping>
